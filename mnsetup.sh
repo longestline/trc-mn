@@ -1,6 +1,11 @@
 #!/bin/bash
 
 
+MY_IP=`ip route get 1 | awk '{print $NF;exit}'`
+RPCP=$(date +%s | sha256sum | base64 | head -c 32 ;)
+mkdir -p ~/.terracoincore/
+
+
 cat > ~/.terracoincore/terracoin.conf <<EOF
 rpcuser=trc
 rpcpassword=$RPCP
